@@ -4,12 +4,12 @@ RUN apk add --no-cache curl
 FROM node:22-alpine AS dependencies-env
 COPY package.json .npmrc* /app/
 WORKDIR /app
-RUN npm install --omit=dev
+RUN npm install --omit=dev --legacy-peer-deps
 
 FROM dependencies-env AS build-env
 COPY . /app/
 WORKDIR /app
-RUN npm install
+RUN npm install --legacy-peer-deps
 RUN npm run build
 
 FROM node:22-alpine
