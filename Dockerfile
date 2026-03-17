@@ -6,7 +6,6 @@ RUN apk --no-cache add curl
 COPY package.json /app/
 WORKDIR /app
 RUN npm install --omit=dev
-RUN npm install --omit=dev
 FROM dependencies-env AS build-env
 COPY . /app/
 WORKDIR /app
